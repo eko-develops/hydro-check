@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/eko-develops/hydro-check#readme",
   "dependencies": {
+    "dotenv": "^16.0.1",
     "puppeteer": "^16.1.0"
   }
 }
