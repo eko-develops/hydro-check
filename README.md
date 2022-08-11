@@ -13,6 +13,10 @@ It is used to get an image of the hydro bill and upload it to my Google Drive so
 
 From the the Puppeteer website: _Puppeteer is a Node library which provides a high-level API to control Chrome or Chromium over the DevTools Protocol. Puppeteer runs headless by default, but can be configured to run full (non-headless) Chrome or Chromium._
 
+# Todo
+
+Now that we can login, get the screenshot, and upload to Google drive, the project needs to be uploaded onto a server and re-tested on headless mode.
+
 # References
 
 **Puppeteer**  
