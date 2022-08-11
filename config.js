@@ -10,6 +10,7 @@ const browserConfig = {
 		height: config.height,
 	},
 	args: [`--window-size=${config.width},${config.height}`],
+	// devtools: true,
 };
 
 module.exports = { browserConfig };
