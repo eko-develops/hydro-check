@@ -12,10 +12,21 @@ const { browserConfig } = require('./config.js');
 
 		await page.waitForSelector('#email');
 
-		await page.type('#email', process.env.USER, { delay: 80 });
-		await page.type('#password', process.env.PASS, { delay: 90 });
+		await page.type('#email', process.env.USER, { delay: 20 });
+		await page.type('#password', process.env.PASS, { delay: 30 });
 
 		await page.keyboard.press('Enter');
+
+		const now = new Date();
+		const nowFormatted = new Intl.DateTimeFormat('en-US')
+			.format(now)
+			.toString()
+			.split('/')
+			.join('-');
+
+		await page.waitForNavigation({ waitUntil: 'networkidle0' });
+
+		await page.screenshot({ path: `images/${nowFormatted}.jpg` });
 	} catch (err) {
 		console.log(err);
 	}
