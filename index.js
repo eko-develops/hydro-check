@@ -1,6 +1,8 @@
 require('dotenv').config();
 const puppeteer = require('puppeteer');
 const { browserConfig } = require('./config.js');
+const Helper = require('./Helper.js');
+const { createAndUploadFile, auth } = require('./drive.js');
 
 (async () => {
 	try {
@@ -17,16 +19,17 @@ const { browserConfig } = require('./config.js');
 
 		await page.keyboard.press('Enter');
 
-		const now = new Date();
-		const nowFormatted = new Intl.DateTimeFormat('en-US')
-			.format(now)
-			.toString()
-			.split('/')
-			.join('-');
+		const nowFormatted = Helper.getFormattedDate();
 
 		await page.waitForNavigation({ waitUntil: 'networkidle0' });
 
-		await page.screenshot({ path: `images/${nowFormatted}.jpg` });
+		setTimeout(async () => {
+			await page.screenshot({ path: `images/${nowFormatted}.jpg` });
+			await createAndUploadFile(auth);
+			setTimeout(async () => {
+				await browser.close();
+			}, 5000);
+		}, 2000);
 	} catch (err) {
 		console.log(err);
 	}
